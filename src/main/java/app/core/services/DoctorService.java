@@ -48,8 +48,6 @@ public class DoctorService {
 		return prescriptionRepository.findByDoctorId(doctorId);
 	}
 
-	public List<Prescription> getAllPatientPrescriptions(Long userId) {
-		return prescriptionRepository.findByPatientId(userId);
-	}
+
 
 }

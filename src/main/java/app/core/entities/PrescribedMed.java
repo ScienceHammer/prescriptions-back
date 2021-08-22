@@ -6,8 +6,8 @@ import app.core.enums.DoseFrequency;
 import app.core.enums.DoseType;
 import app.core.enums.Units;
 
-@Entity(name = "prescribed_meds")
-public class PrescripedMed {
+@Entity
+public class PrescribedMed {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -20,8 +20,8 @@ public class PrescripedMed {
 	private Units dosageUnit;
 	private DoseFrequency frequency;
 	private Integer numberOfTakingDays;
-	@ManyToOne
-	@JoinColumn(name = "prescription_id", referencedColumnName = "id")
+	@ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+//	@JoinColumn(name = "prescription_id")
 	private Prescription prescription;
 
 	public Long getId() {

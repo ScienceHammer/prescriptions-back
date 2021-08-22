@@ -4,7 +4,7 @@ import java.util.List;
 
 import javax.persistence.*;
 
-@Entity(name = "prescriptions")
+@Entity
 public class Prescription {
 
 	@Id
@@ -15,8 +15,8 @@ public class Prescription {
 	@ManyToOne(cascade = CascadeType.ALL)
 	private User patient;
 	private String reason;
-	@OneToMany(cascade = CascadeType.ALL, mappedBy = "prescription")
-	private List<PrescripedMed> prescripedMeds;
+	@OneToMany( cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	private List<PrescribedMed> prescribedMeds;
 
 	public Long getId() {
 		return id;
@@ -34,12 +34,12 @@ public class Prescription {
 		this.reason = reason;
 	}
 
-	public List<PrescripedMed> getPrescripedMeds() {
-		return prescripedMeds;
+	public List<PrescribedMed> getPrescribedMeds() {
+		return prescribedMeds;
 	}
 
-	public void setPrescripedMeds(List<PrescripedMed> prescripedMeds) {
-		this.prescripedMeds = prescripedMeds;
+	public void setPrescribedMeds(List<PrescribedMed> prescribedMeds) {
+		this.prescribedMeds = prescribedMeds;
 	}
 
 	public User getDoctor() {
@@ -58,4 +58,14 @@ public class Prescription {
 		this.patient = patient;
 	}
 
+	@Override
+	public String toString() {
+		return "Prescription{" +
+				"id=" + id +
+				", doctor=" + doctor +
+				", patient=" + patient +
+				", reason='" + reason + '\'' +
+				", prescribedMeds=" + prescribedMeds +
+				'}';
+	}
 }

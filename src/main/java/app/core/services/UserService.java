@@ -59,7 +59,7 @@ public class UserService {
 			mail.setReceiver(receiver.get());
 			return mailRepository.save(mail);
 		} else {
-			throw new Exception("Sender Or Reciver Are Missing !!");
+			throw new Exception("Sender Or Receiver Are Missing !!");
 		}
 	}
 
@@ -72,6 +72,10 @@ public class UserService {
 		} else {
 			throw new Exception("Mail Is Not Found !!");
 		}
+	}
+
+	public List<Prescription> getAllPatientPrescriptions(Long userId) {
+		return prescriptionRepository.findByPatientId(userId);
 	}
 
 	public List<Message> getAllMailMessages(Long mailId) {
