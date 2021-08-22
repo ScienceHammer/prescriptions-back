@@ -1,6 +1,7 @@
 package app.core.entities;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -22,8 +23,13 @@ public class Mail {
 	private User sender;
 	@OneToMany (cascade = CascadeType.ALL)
 	private List<Message> messages;
+	private Date issuedDate;
 	@ManyToOne
 	private User receiver;
+
+	public Mail() {
+		this.issuedDate = new Date(System.currentTimeMillis());
+	}
 
 	public Long getId() {
 		return id;
